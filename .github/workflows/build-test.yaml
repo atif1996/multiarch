@@ -1,0 +1,11 @@
+name: Build&Test
+
+on: [push]
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Docker
+        run: |
+          docker buildx ls
