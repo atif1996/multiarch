@@ -3,7 +3,7 @@ name: Build&Test
 on: [push]
 
 jobs:
-  ubuntu:
+  docker:
     runs-on: ubuntu-20.04
     steps:
       - name: qemu install
@@ -12,3 +12,27 @@ jobs:
       - name: Docker
         run: |
           docker buildx ls
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2"
+        with:
+          ref: ${{ github.ref }}
+      - name: "cat package.json"
+        run: cat ./package.json
+      - name: "Docker build"
+        run: |
+          docker buildx build . --platform linux/arm64,linux/amd64
+
+  lint-test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2"
+        with:
+          ref: ${{ github.ref }}
+      - name: "Setup Node.js"
+        uses: "actions/setup-node@v2"
+        with:
+          node-version: 12
+      - name: lint
+        run: |
+	  npx eslint
