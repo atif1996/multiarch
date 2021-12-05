@@ -34,5 +34,4 @@ jobs:
         with:
           node-version: 12
       - name: lint
-        run: |
-	  npx eslint
+        run: npx eslint
