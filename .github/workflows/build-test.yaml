@@ -12,6 +12,7 @@ jobs:
       - name: Docker
         run: |
           docker buildx ls
+          docker buildx inspect --bootstrap
       - name: "Checkout source code"
         uses: "actions/checkout@v2"
         with:
