@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: qemu install
         run: |
-          apt-get update && install -yqq qemu-user-static
+          sudo apt-get update && sudo apt-get install -yqq qemu-user-static
       - name: Docker
         run: |
           docker buildx ls
