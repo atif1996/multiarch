@@ -13,6 +13,7 @@ jobs:
         run: |
           docker buildx ls
           docker buildx inspect --bootstrap
+          docker buildx create --use --name multiplatform
       - name: "Checkout source code"
         uses: "actions/checkout@v2"
         with:
