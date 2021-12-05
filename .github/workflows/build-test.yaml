@@ -6,6 +6,9 @@ jobs:
   ubuntu:
     runs-on: ubuntu-20.04
     steps:
+      - name: qemu install
+        run: |
+          apt-get update && install -yqq qemu-user-static
       - name: Docker
         run: |
           docker buildx ls
